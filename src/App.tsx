@@ -1,7 +1,9 @@
-import { useState, useContext, createContext } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import './App.css'
 import Header from './components/Header.tsx'
 import TeamCard from './components/TeamCard.tsx'
+import type { RequestBody, ResponseBody } from './types/apiTypes.ts'
+import { predict } from './lib/apiService.ts'
 
 const UserDataCtx = createContext({})
 
@@ -13,6 +15,18 @@ function App() {
     attendance: 0,
   } as RequestBody)
 
+  const [response, setResponse] = useState<ResponseBody | null>(null);
+
+  const fetchResult = async () => {
+    const result = await predict();
+    setResponse(result);
+    console.log(result);
+  }
+
+  useEffect(() => {
+    fetchResult();
+  }, []);
+
   return (
     <UserDataCtx.Provider value={data}>
 
@@ -21,9 +35,19 @@ function App() {
         Save Changes
       </button> */}
       <div className='py-12 px-50 flex justify-between items-center border border-red-200 '>
-        <TeamCard />
-        <div className='w-20 h-20 text-center'>Hello</div>
-        <TeamCard />
+        <TeamCard team='man_utd' />
+        <div className='flex flex-col gap-12 '>
+          {
+            response?.winRate && (
+              <>
+                <div className='w-24 text-center'>Win rate: {response.winRate}</div>
+                <div className='w-24 text-center'>Draw rate: {response.drawRate}</div>
+                <div className='w-24 text-center'>Lost rate: {response.loseRate}</div>
+              </>
+            )
+          }
+        </div>
+        <TeamCard team='man_city' />
       </div>
     </UserDataCtx.Provider>
   )
