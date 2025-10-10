@@ -15,7 +15,11 @@ function App() {
     attendance: 0,
   } as RequestBody)
 
-  const [response, setResponse] = useState<ResponseBody | null>(null);
+  const [response, setResponse] = useState<ResponseBody | null>({
+    winRate: 100,
+    drawRate: 0,
+    loseRate: 0,
+  });
 
   const fetchResult = async () => {
     const result = await predict();
@@ -36,13 +40,14 @@ function App() {
       </button> */}
       <div className='py-12 px-50 flex justify-between items-center border border-red-200 '>
         <TeamCard team='man_utd' />
-        <div className='flex flex-col gap-12 '>
+        {/* Probabilities */}
+        <div className='flex flex-row gap-12 '>
           {
             response?.winRate && (
               <>
-                <div className='w-24 text-center'>Win Rate: {response.winRate}</div>
-                <div className='w-24 text-center'>Draw Rate: {response.drawRate}</div>
-                <div className='w-24 text-center'>Lost Rate: {response.loseRate}</div>
+                <div className='w-24 text-center text-4xl'>Win {response.winRate}</div>
+                <div className='w-24 text-center text-4xl'>Draw {response.drawRate}</div>
+                <div className='w-24 text-center text-4xl'>Lose {response.loseRate}</div>
               </>
             )
           }
