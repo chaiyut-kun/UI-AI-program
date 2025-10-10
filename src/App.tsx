@@ -40,9 +40,9 @@ function App() {
           {
             response?.winRate && (
               <>
-                <div className='w-24 text-center'>Win rate: {response.winRate}</div>
-                <div className='w-24 text-center'>Draw rate: {response.drawRate}</div>
-                <div className='w-24 text-center'>Lost rate: {response.loseRate}</div>
+                <div className='w-24 text-center'>Win Rate: {response.winRate}</div>
+                <div className='w-24 text-center'>Draw Rate: {response.drawRate}</div>
+                <div className='w-24 text-center'>Lost Rate: {response.loseRate}</div>
               </>
             )
           }
