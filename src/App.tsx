@@ -22,9 +22,9 @@ function App() {
   });
 
   const fetchResult = async () => {
-    const result = await predict();
-    setResponse(result);
-    console.log(result);
+    // const result = await predict();
+    // setResponse(result);
+    // console.log(result);
   }
 
   useEffect(() => {
