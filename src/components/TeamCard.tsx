@@ -1,13 +1,28 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
 import TeamKeys from '../types/TeamKeys'
 import TeamSelect from './TeamSelect'
 
 type TeamKeys = keyof typeof TeamKeys
-type Props = {team: TeamKeys}
-function TeamCard({team} : Props) {
+type Props = { team: TeamKeys}
+function TeamCard({ team }: Props, isHome: boolean) {
 
-    const path = TeamKeys[team]
+    // เอาไว้เก็บทีมที่ user เลือก
+    const [selectedTeam, setSelectedTeam] = useState<TeamKeys>('Manchester Utd')
+
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedTeam(event.target.value as TeamKeys);
+    };
+
+    const [path, setPath] = useState('')
+
+    
     console.log(path)
+
+    useEffect(() => {
+        setPath(TeamKeys[selectedTeam])
+        console.log(selectedTeam)
+    }, [selectedTeam])
+
 
     return (
         <div className='w-60'>
@@ -15,9 +30,9 @@ function TeamCard({team} : Props) {
             <div className='bg-gray-300 w-60 h-70 rounded flex items-center p-2'>
                 <img src={path} alt="" className='w-60 h-60' />
             </div>
-            <TeamSelect/>
+            <TeamSelect selectedTeam={selectedTeam} handleChange={handleChange} />
         </div>
-    
+
     )
 }
 

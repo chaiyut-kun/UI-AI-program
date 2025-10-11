@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react"
 import { getTeam } from "../lib/apiService";
 
-function TeamSelect() {
+function TeamSelect({selectedTeam, handleChange}: {selectedTeam: string, handleChange: React.ChangeEventHandler<HTMLSelectElement>}) {
 
     // เอาไว้เก็บทีมทั้งหมดทุกทีมที่ดึงมาจาก API
     const [teams, setTeams] = useState([])
-
-    // เอาไว้เก็บทีมที่ user เลือก
-    const [selectedTeam, setSelectedTeam] = useState('Team')
-
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedTeam(event.target.value);
-    };
 
     const fetchTeams = async () => {
         setTeams(await getTeam())
@@ -29,9 +22,7 @@ function TeamSelect() {
                     {teams && teams.map((team, index) => {
 
                         return (
-                            <>
                                 <option value={team} key={index}>{team}</option>
-                            </>
                         )
                     })}
                 </select>

@@ -15,7 +15,7 @@ import Liverpool_fc from '../assets/icons/Liverpool_FC_logo.svg'
 
 
 const TeamKeys = {
-    man_utd: Manchester_United_FC_logo,
+    "Manchester Utd": Manchester_United_FC_logo,
     man_city: Manchester_City_2016,
     arsenal: Arsenal_FC_logo,
     aston_villa: Aston_Villa_FC_logo

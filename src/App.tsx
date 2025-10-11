@@ -5,6 +5,7 @@ import TeamCard from './components/TeamCard.tsx'
 import type { RequestBody, ResponseBody } from './types/apiTypes.ts'
 import { predict } from './lib/apiService.ts'
 import TeamSelect from './components/TeamSelect.tsx'
+
 const UserDataCtx = createContext({})
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   const [data, setData] = useState({
     home: "",
     away: "",
-    attendance: 0,
+    ref_name: ""
   } as RequestBody)
 
   const [response, setResponse] = useState<ResponseBody | null>({
@@ -36,9 +37,6 @@ function App() {
 
       <Header />
 
-      {/* <button className="bg-blue-500 transition delay-75 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 ...">
-        Save Changes
-      </button> */}
       <div className='py-12 px-50 flex justify-between items-center border border-red-200 '>
         <TeamCard team='man_utd' />
 
