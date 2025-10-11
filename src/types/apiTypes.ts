@@ -1,7 +1,7 @@
 export  interface RequestBody {
     home: string
     away: string
-    attendance: number
+    ref_name: string
 }
 
 export interface ResponseBody {

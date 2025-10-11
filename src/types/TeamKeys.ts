@@ -24,7 +24,7 @@ import Bournemouth from '../assets/icons/o3e59plsgm0Gtt43tpi-o.png'
 
 
 const TeamKeys = {
-    man_utd: Manchester_United_FC_logo,
+    "Manchester Utd": Manchester_United_FC_logo,
     man_city: Manchester_City_2016,
     arsenal: Arsenal_FC_logo,
     aston_villa: Aston_Villa_FC_logo,
