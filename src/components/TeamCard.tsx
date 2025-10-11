@@ -4,7 +4,7 @@ import TeamSelect from './TeamSelect'
 
 type TeamKeys = keyof typeof TeamKeys
 type Props = { team: TeamKeys}
-function TeamCard({ team }: Props, isHome: boolean) {
+function TeamCard({isHome}:{isHome: boolean}) {
 
     // เอาไว้เก็บทีมที่ user เลือก
     const [selectedTeam, setSelectedTeam] = useState<TeamKeys>('Manchester Utd')
@@ -13,14 +13,12 @@ function TeamCard({ team }: Props, isHome: boolean) {
         setSelectedTeam(event.target.value as TeamKeys);
     };
 
+    // path of image card
     const [path, setPath] = useState('')
 
     
-    console.log(path)
-
     useEffect(() => {
         setPath(TeamKeys[selectedTeam])
-        console.log(selectedTeam)
     }, [selectedTeam])
 
 

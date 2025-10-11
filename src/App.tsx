@@ -38,7 +38,7 @@ function App() {
       <Header />
 
       <div className='py-12 px-50 flex justify-between items-center border border-red-200 '>
-        <TeamCard team='man_utd' />
+        <TeamCard isHome={true}/>
 
 
         {/* Probabilities */}
@@ -75,7 +75,7 @@ function App() {
             </button>
           </div>
         </div>
-        <TeamCard team='man_city' />
+        <TeamCard isHome={false} />
 
         
 
