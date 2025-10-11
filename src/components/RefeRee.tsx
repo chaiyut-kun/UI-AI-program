@@ -1,18 +1,44 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { getref } from "../lib/apiService";
+import { UserDataCtx } from "../contexts/Context";
 
-function RefeRee({ selectedRef, handleChange }: { selectedRef: string, handleChange: React.ChangeEventHandler<HTMLSelectElement> }) {
+function Referee() {
+
+    const userDataContext = useContext(UserDataCtx)
+
+    if (!userDataContext) {
+        throw new Error("UserDataCtx must be used within a Provider");
+    }
+
+    const { updateRef } = userDataContext
 
     const [refs, setRefs] = useState<string[]>([])
 
     const fetchRefs = async () => {
         const data = await getref()
-        setRefs(data)
+        setRefs(Object.values(data))
+    }
+
+    // selected ref
+    const [selectedRef, setSelectedRef] = useState('')
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedRef(e.target.value)
+        setRefData()
+
+    }
+
+    const setRefData = () => {
+        updateRef(selectedRef)
     }
 
     useEffect(() => {
         fetchRefs()
     }, [])
+    
+    useEffect(() => {
+        setRefData()
+    }, [selectedRef])
 
     return (
         <div className="mt-4 flex flex-col items-center">
@@ -26,7 +52,7 @@ function RefeRee({ selectedRef, handleChange }: { selectedRef: string, handleCha
                     {refs.map((ref, index) => {
 
                         return (
-                        <option value={index} key={index}>{ref}</option>
+                            <option value={ref} key={index}>{ref}</option>
                         )
                     })}
                 </select>
@@ -35,4 +61,4 @@ function RefeRee({ selectedRef, handleChange }: { selectedRef: string, handleCha
     )
 }
 
-export default RefeRee
+export default Referee

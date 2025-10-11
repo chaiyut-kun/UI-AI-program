@@ -17,7 +17,7 @@ function TeamSelect({selectedTeam, handleChange}: {selectedTeam: string, handleC
     return (
         <div className="mt-4 flex flex-col items-center">
             <div className="w-full">
-                <select className="w-full border rounded p-1 text-center" defaultValue={selectedTeam} value={selectedTeam} onChange={handleChange}>
+                <select className="w-full border rounded p-1 text-center" value={selectedTeam} onChange={handleChange}>
                     {/* ดึง API มาแสดงในชื่อทีม*/}
                     {teams && teams.map((team, index) => {
 

@@ -1,13 +1,13 @@
-import { useState, useEffect, createContext } from 'react'
+import { useState } from 'react'
 import './App.css'
 import Header from './components/Header.tsx'
 import TeamCard from './components/TeamCard.tsx'
-import type { RequestBody, ResponseBody } from './types/apiTypes.ts'
+import type { RequestBody, ResponseBody, UserDataContextType } from './types/apiTypes.ts'
 import { predict } from './lib/apiService.ts'
 import TeamSelect from './components/TeamSelect.tsx'
-import RefeRee from './components/RefeRee.tsx'
+import Referee from './components/RefeRee.tsx'
+import { UserDataCtx } from './contexts/Context.tsx'
 
-const UserDataCtx = createContext({})
 
 function App() {
 
@@ -17,24 +17,29 @@ function App() {
     ref_name: ""
   } as RequestBody)
 
+  const CtxValue = {
+    data,
+    setData,
+    updateHome: (team: string) => setData(prev => ({ ...prev, home: team })),
+    updateAway: (team: string) => setData(prev => ({ ...prev, away: team })),
+    updateRef: (ref: string) => setData(prev => ({ ...prev, ref_name: ref }))
+  } as UserDataContextType;
+
   const [response, setResponse] = useState<ResponseBody | null>({
-    winRate: 100,
+    winRate: 0,
     drawRate: 0,
     loseRate: 0,
   });
 
-  const fetchResult = async () => {
-    // const result = await predict();
-    // setResponse(result);
-    // console.log(result);
-  }
+  const handleSubmit = async () => {
+    console.log(data)
+    const result = await predict(data.home, data.away);
+    setResponse(result);
+  }  
 
-  useEffect(() => {
-    fetchResult();
-  }, []);
 
   return (
-    <UserDataCtx.Provider value={data}>
+    <UserDataCtx.Provider value={CtxValue}>
 
       <Header />
 
@@ -51,17 +56,17 @@ function App() {
                 <>
                   <div className='w-24 text-center text-4xl text-green-600'>Win
                     <div className='text-[25px]/10 text-green-400'>
-                      {response.winRate}
+                      {response.winRate} %
                     </div>
                   </div>
                   <div className='w-24 text-center text-4xl text-yellow-400'>Draw
                     <div className='text-[25px]/10 text-yellow-300' >
-                      {response.drawRate}
+                      {response.drawRate} %
                     </div>
                   </div>
                   <div className='w-24 text-center text-4xl text-red-600' >Lose
                     <div className='text-[25px]/10 text-red-500'>
-                      {response.loseRate}
+                      {response.loseRate} %
                     </div>
                   </div>
 
@@ -70,10 +75,10 @@ function App() {
             }
           </div>
 
-          <RefeRee selectedRef={data.ref_name} handleChange={(e) => setData({ ...data, ref_name: e.target.value })} />
+          <Referee />
 
           <div className='mt-8 flex justify-center'>
-            <button className="!bg-purple-800 text-amber-50 p-2 rounded-lg hover:bg-purple-600 transition delay-75 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+            <button onClick={handleSubmit} className="!bg-purple-800 text-amber-50 p-2 rounded-lg hover:bg-purple-600 transition delay-75 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
               predictions
             </button>
           </div>
