@@ -11,3 +11,9 @@ export const predict = async () => {
     }
 }
 
+async function getTeam() {
+    const response = await axios.get(`${url}/teams`)
+    if (response.status === 200) {
+        return response.data
+    }
+} 
