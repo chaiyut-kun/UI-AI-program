@@ -5,6 +5,7 @@ import TeamCard from './components/TeamCard.tsx'
 import type { RequestBody, ResponseBody } from './types/apiTypes.ts'
 import { predict } from './lib/apiService.ts'
 import TeamSelect from './components/TeamSelect.tsx'
+import RefeRee from './components/RefeRee.tsx'
 
 const UserDataCtx = createContext({})
 
@@ -38,7 +39,7 @@ function App() {
       <Header />
 
       <div className='py-12 px-50 flex justify-between items-center border border-red-200 '>
-        <TeamCard isHome={true}/>
+        <TeamCard isHome={true} />
 
 
         {/* Probabilities */}
@@ -69,6 +70,8 @@ function App() {
             }
           </div>
 
+          <RefeRee selectedRef={data.ref_name} handleChange={(e) => setData({ ...data, ref_name: e.target.value })} />
+
           <div className='mt-8 flex justify-center'>
             <button className="!bg-purple-800 text-amber-50 p-2 rounded-lg hover:bg-purple-600 transition delay-75 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
               predictions
@@ -77,7 +80,7 @@ function App() {
         </div>
         <TeamCard isHome={false} />
 
-        
+
 
       </div>
     </UserDataCtx.Provider>

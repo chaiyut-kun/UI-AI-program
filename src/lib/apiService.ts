@@ -22,3 +22,13 @@ export async function getTeam() {
         return response.data
     }
 } 
+
+
+export async function getref() {
+    const response = await axios.get(`${url}/referees`)
+    if (response.status === 200) {
+        return response.data
+    }
+    
+}
+
