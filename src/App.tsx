@@ -4,7 +4,7 @@ import Header from './components/Header.tsx'
 import TeamCard from './components/TeamCard.tsx'
 import type { RequestBody, ResponseBody } from './types/apiTypes.ts'
 import { predict } from './lib/apiService.ts'
-
+import TeamSelect from './components/TeamSelect.tsx'
 const UserDataCtx = createContext({})
 
 function App() {
@@ -35,24 +35,52 @@ function App() {
     <UserDataCtx.Provider value={data}>
 
       <Header />
+
       {/* <button className="bg-blue-500 transition delay-75 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 ...">
         Save Changes
       </button> */}
       <div className='py-12 px-50 flex justify-between items-center border border-red-200 '>
         <TeamCard team='man_utd' />
+
+
         {/* Probabilities */}
-        <div className='flex flex-row gap-12 '>
-          {
-            response?.winRate && (
-              <>
-                <div className='w-24 text-center text-4xl'>Win {response.winRate}</div>
-                <div className='w-24 text-center text-4xl'>Draw {response.drawRate}</div>
-                <div className='w-24 text-center text-4xl'>Lose {response.loseRate}</div>
-              </>
-            )
-          }
+        <div className='flex flex-col items-center'>
+
+          <div className='flex flex-row gap-12 '>
+            {
+              response?.winRate && (
+                <>
+                  <div className='w-24 text-center text-4xl text-green-600'>Win
+                    <div className='text-[25px]/10 text-green-400'>
+                      {response.winRate}
+                    </div>
+                  </div>
+                  <div className='w-24 text-center text-4xl text-yellow-400'>Draw
+                    <div className='text-[25px]/10 text-yellow-300' >
+                      {response.drawRate}
+                    </div>
+                  </div>
+                  <div className='w-24 text-center text-4xl text-red-600' >Lose
+                    <div className='text-[25px]/10 text-red-500'>
+                      {response.loseRate}
+                    </div>
+                  </div>
+
+                </>
+              )
+            }
+          </div>
+
+          <div className='mt-8 flex justify-center'>
+            <button className="!bg-purple-800 text-amber-50 p-2 rounded-lg hover:bg-purple-600 transition delay-75 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+              predictions
+            </button>
+          </div>
         </div>
         <TeamCard team='man_city' />
+
+        
+
       </div>
     </UserDataCtx.Provider>
   )
