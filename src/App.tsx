@@ -4,7 +4,6 @@ import Header from './components/Header.tsx'
 import TeamCard from './components/TeamCard.tsx'
 import type { RequestBody, ResponseBody, UserDataContextType } from './types/apiTypes.ts'
 import { predict } from './lib/apiService.ts'
-import TeamSelect from './components/TeamSelect.tsx'
 import Referee from './components/RefeRee.tsx'
 import { UserDataCtx } from './contexts/Context.tsx'
 

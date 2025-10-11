@@ -1,4 +1,3 @@
-import App from "../App";
 import premierIcon from '../assets/premierIcon.png'
 
 
