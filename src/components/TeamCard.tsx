@@ -45,7 +45,9 @@ function TeamCard({ isHome }: { isHome: boolean }) {
         <div className='w-60'>
             <h2 className='text-center text-2xl mb-2'>Home</h2>
             <div className='bg-gray-300 w-60 h-70 rounded flex items-center justify-center p-2'>
-                <img src={path} alt="" className='w-40 h-40' />
+                <img 
+                src={path} alt="" 
+                className={`w-40 h-40 transition delay-150 duration-300 ease-in-out  hover:translate-y-1 hover:scale-130`} />
             </div>
             <TeamSelect selectedTeam={selectedTeam} handleChange={handleChange} />
         </div>
