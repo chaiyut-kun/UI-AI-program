@@ -55,17 +55,17 @@ function App() {
                 <>
                   <div className='w-24 text-center text-4xl text-green-600'>Win
                     <div className='text-[25px]/10 text-green-400'>
-                      {response.winRate} %
+                      {Math.round(response.winRate)} %
                     </div>
                   </div>
                   <div className='w-24 text-center text-4xl text-yellow-400'>Draw
                     <div className='text-[25px]/10 text-yellow-300' >
-                      {response.drawRate} %
+                      {Math.round(response.drawRate)} %
                     </div>
                   </div>
                   <div className='w-24 text-center text-4xl text-red-600' >Lose
                     <div className='text-[25px]/10 text-red-500'>
-                      {response.loseRate} %
+                      {Math.round(response.loseRate)} %
                     </div>
                   </div>
 
