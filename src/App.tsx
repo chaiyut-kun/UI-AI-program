@@ -32,7 +32,7 @@ function App() {
 
   const handleSubmit = async () => {
     console.log(data)
-    const result = await predict(data.home, data.away);
+    const result = await predict(data.home, data.away, data.ref_name);
     setResponse(result);
   }  
 
