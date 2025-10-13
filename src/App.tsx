@@ -24,16 +24,12 @@ function App() {
     updateRef: (ref: string) => setData(prev => ({ ...prev, ref_name: ref }))
   } as UserDataContextType;
 
-  const [response, setResponse] = useState<ResponseBody | null>({
-    winRate: 0,
-    drawRate: 0,
-    loseRate: 0,
-  });
+  const [response, setResponse] = useState<ResponseBody | null>(null);
 
   const handleSubmit = async () => {
     console.log(data)
     const result = await predict(data.home, data.away, data.ref_name);
-    setResponse(result);
+    setResponse(result ?? null);
   }  
 
 
@@ -51,7 +47,7 @@ function App() {
 
           <div className='flex flex-row gap-12 '>
             {
-              response?.winRate && (
+              response && (
                 <>
                   <div className='w-24 text-center text-4xl text-green-600'>Win
                     <div className='text-[25px]/10 text-green-400'>
