@@ -6,7 +6,6 @@ export  interface RequestBody {
 
 export interface ResponseBody {
     winRate: number
-    drawRate: number
     loseRate: number
 }
 
