@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserDataCtx } from "../contexts/Context";
+import type { UserDataContextType } from '../types/apiTypes';
+
 
 export default function NumberInput() {
-  const [value, setValue] = useState(0);
+  const { updateAttendance } = useContext(UserDataCtx) as UserDataContextType
+
+  const [value, setValue] = useState<number | string>(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(e.target.value));
+    const newValue = e.target.value === '' ? '' : Number(e.target.value);
+    setValue(newValue);
+    if (newValue !== '') {
+      updateAttendance(Number(newValue));
+    }
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    // ถ้าค่าปัจจุบันคือ 0 → ล้างค่า
+    if (value === 0) {
+      setValue('');
+    }
   };
 
   return (
@@ -17,6 +33,7 @@ export default function NumberInput() {
     <input className='w-full max-w-md rounded-2xl border border-indigo-200 bg-gradient-to-br from-white via-indigo-30 to-white p-6 shadow-lg shadow-indigo-100/10'
       type="number"
       value={value}
+      onClick={handleClick}
       onChange={handleChange}
       min="0" // Optional: set minimum value
       max="100" // Optional: set maximum value
