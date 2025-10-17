@@ -67,7 +67,7 @@ function App() {
             }
           </div>
 
-          <Referee />
+            <Referee />
 
           {/* Attendance input */}
           <NumberInput />
