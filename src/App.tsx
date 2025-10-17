@@ -6,6 +6,7 @@ import type { RequestBody, ResponseBody, UserDataContextType } from './types/api
 import { predict } from './lib/apiService.ts'
 import Referee from './components/RefeRee.tsx'
 import { UserDataCtx } from './contexts/Context.tsx'
+import NumberInput from './components/Attendance.tsx'
 
 
 function App() {
@@ -66,10 +67,10 @@ function App() {
             }
           </div>
 
-          {/* Attendance input */}
-          
-
           <Referee />
+
+          {/* Attendance input */}
+          <NumberInput />
 
           <div className='mt-8 flex justify-center'>
             <button onClick={handleSubmit} className="!bg-purple-800 text-amber-50 p-2 rounded-lg hover:bg-purple-600 transition delay-75 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">

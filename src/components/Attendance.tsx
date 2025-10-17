@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-function NumberInputBasic() {
+export default function NumberInput() {
   const [value, setValue] = useState(0);
 
-  const handleChange = (event) => {
-    setValue(Number(event.target.value));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(Number(e.target.value));
   };
 
   return (
@@ -19,5 +19,3 @@ function NumberInputBasic() {
   );
 }
 
-
-export default NumberInputBasic;
