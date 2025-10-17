@@ -13,7 +13,8 @@ function App() {
   const [data, setData] = useState({
     home: "",
     away: "",
-    ref_name: ""
+    ref_name: "",
+    attendance: 0
   } as RequestBody)
 
   const CtxValue = {
@@ -64,6 +65,9 @@ function App() {
               )
             }
           </div>
+
+          {/* Attendance input */}
+
 
           <Referee />
 
