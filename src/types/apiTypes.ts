@@ -15,6 +15,7 @@ export interface UserDataContextType {
     updateHome: (team: string) => void;
     updateAway: (team: string) => void;
     updateRef: (ref: string) => void;
+    updateAttendance: (attendance: number) => void;
 }
 
 

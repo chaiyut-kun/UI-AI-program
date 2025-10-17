@@ -23,7 +23,8 @@ function App() {
     setData,
     updateHome: (team: string) => setData(prev => ({ ...prev, home: team })),
     updateAway: (team: string) => setData(prev => ({ ...prev, away: team })),
-    updateRef: (ref: string) => setData(prev => ({ ...prev, ref_name: ref }))
+    updateRef: (ref: string) => setData(prev => ({ ...prev, ref_name: ref })),
+    updateAttendance: (attendance: number) => setData(prev => ({ ...prev, attendance: attendance }))
   } as UserDataContextType;
 
   const [response, setResponse] = useState<ResponseBody | null>(null);
