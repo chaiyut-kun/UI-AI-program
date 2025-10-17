@@ -24,9 +24,9 @@ export default function NumberInput() {
   };
 
   return (
-    <div className="flex flex-col items-center mb-6">
+    <div className="flex flex-col items-center mb-6 mt-5" >
         <header className="mb-4">
-          <h2 className="text-xl font-semibold text-indigo-700">จำนวนผู้เข้าร่วม</h2>
+          <h2 className="text-center text-xl font-semibold text-indigo-700 ">จำนวนผู้เข้าร่วม</h2>
           <p className="mt-1 text-sm text-indigo-500">กรอกจำนวนผู้เข้าร่วมการแข่งขัน </p>
         </header>
             
