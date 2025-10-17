@@ -2,6 +2,7 @@ export  interface RequestBody {
     home: string
     away: string
     ref_name: string
+    attendence?: number
 }
 
 export interface ResponseBody {
@@ -15,3 +16,5 @@ export interface UserDataContextType {
     updateAway: (team: string) => void;
     updateRef: (ref: string) => void;
 }
+
+
