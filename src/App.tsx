@@ -6,6 +6,7 @@ import type { RequestBody, ResponseBody, UserDataContextType } from './types/api
 import { predict } from './lib/apiService.ts'
 import Referee from './components/RefeRee.tsx'
 import { UserDataCtx } from './contexts/Context.tsx'
+import NumberInput from './components/Attendance.tsx'
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
   const [data, setData] = useState({
     home: "",
     away: "",
-    ref_name: ""
+    ref_name: "",
+    attendance: 0
   } as RequestBody)
 
   const CtxValue = {
@@ -21,7 +23,8 @@ function App() {
     setData,
     updateHome: (team: string) => setData(prev => ({ ...prev, home: team })),
     updateAway: (team: string) => setData(prev => ({ ...prev, away: team })),
-    updateRef: (ref: string) => setData(prev => ({ ...prev, ref_name: ref }))
+    updateRef: (ref: string) => setData(prev => ({ ...prev, ref_name: ref })),
+    updateAttendance: (attendance: number) => setData(prev => ({ ...prev, attendance: attendance }))
   } as UserDataContextType;
 
   const [response, setResponse] = useState<ResponseBody | null>(null);
@@ -54,11 +57,6 @@ function App() {
                       {Math.round(response.winRate)} %
                     </div>
                   </div>
-                  <div className='w-24 text-center text-4xl text-yellow-400'>Draw
-                    <div className='text-[25px]/10 text-yellow-300' >
-                      {Math.round(response.drawRate)} %
-                    </div>
-                  </div>
                   <div className='w-24 text-center text-4xl text-red-600' >Lose
                     <div className='text-[25px]/10 text-red-500'>
                       {Math.round(response.loseRate)} %
@@ -70,7 +68,10 @@ function App() {
             }
           </div>
 
-          <Referee />
+            <Referee />
+
+          {/* Attendance input */}
+          <NumberInput />
 
           <div className='mt-8 flex justify-center'>
             <button onClick={handleSubmit} className="!bg-purple-800 text-amber-50 p-2 rounded-lg hover:bg-purple-600 transition delay-75 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
