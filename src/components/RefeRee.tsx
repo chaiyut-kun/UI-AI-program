@@ -56,9 +56,7 @@ function Referee() {
                             <option
                                 value={ref} key={index}
                             >
-                                <p className="transition delay-150 duration-300 ease-in-out  hover:translate-y-1 hover:text-xl">
                                     {ref}
-                                </p>
                             </option>
                         )
                     })}

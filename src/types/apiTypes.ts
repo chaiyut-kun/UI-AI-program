@@ -2,7 +2,7 @@ export  interface RequestBody {
     home: string
     away: string
     ref_name: string
-    attendance?: number
+    attendance: number
 }
 
 export interface ResponseBody {

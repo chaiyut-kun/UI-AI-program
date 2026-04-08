@@ -1,13 +1,14 @@
 import axios from "axios"
 import type { RequestBody, ResponseBody } from "../types/apiTypes"
 
-const url = "http://localhost:8000"
+const url = "http://127.0.0.1:8000"
 
-export const predict = async (home: string, away: string, ref_name:string) => {
+export const predict = async (home: string, away: string, ref_name:string, attendance: number) => {
     const body = {
         home,
         away,
-        ref_name: ref_name
+        ref_name: ref_name,
+        attendance
     } as RequestBody
     const response = await axios.post(`${url}/predict`, body)
     if (response.status === 200) {
